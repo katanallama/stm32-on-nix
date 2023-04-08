@@ -1,0 +1,32 @@
+* About
+
+This is a minimal template for STM32F103RB development with PlatformIO.
+
+* Initialization
+
+To use a template, you can use the nix flake init command and specify the template with the --template flag:
+
+#+begin_src sh
+nix flake init --template "github:katanallama/stm32-on-nix#stm32-on-nix"
+#+end_src
+
+Alternatively, you can use the nix flake new command to create a new flake project in a new directory:
+
+#+begin_src sh
+nix flake new --template "github:katanallama/stm32-on-nix#stm32-on-nix" my-project
+#+end_src
+
+Ensure that UDEV rules for `openocd` are in place and add below to your `configuration.nix` or flake.
+#+begin_src nix
+user.extraGroups = [ "plugdev" "dialout" ];
+services.udev.packages = [ pkgs.openocd ];
+#+end_src
+
+* Usage
+
+`nix develop`: drops you into a shell with the platformIO package and required C dependencies
+#+begin_src sh
+nix develop
+#+end_src
+
+Additional header files not included in the platformIO core are in `./include`
