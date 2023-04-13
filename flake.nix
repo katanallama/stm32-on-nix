@@ -2,24 +2,29 @@
   description = "PlatformIO STM32 devShell";
 
   inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/21.11";
+    nixpkgs-unstable.url =
+      "nixpkgs/nixpkgs-unstable"; # for packages on the edge
+
     utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { self, nixpkgs, utils, ... }:
+  outputs = { self, nixpkgs, nixpkgs-unstable, utils, ... }:
     utils.lib.eachDefaultSystem (system:
       let
         pkgs = import nixpkgs { inherit system; };
+        pkgs' = import nixpkgs-unstable { inherit system; };
       in {
-        devShells.system = pkgs.mkShell {
+        devShells.default = pkgs.mkShell {
           name = "stm32-on-nix-project"; # rename me
           buildInputs = with pkgs; [
             # bear
             ccls
             # cmake
-            gcc-arm-embedded
+            # gcc-arm-embedded
             just
             openocd
-            platformio
+            pkgs'.platformio # 21.11 version is too old
             stlink
           ];
           shellHook = ''
