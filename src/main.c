@@ -12,7 +12,6 @@
 #include "stm32f10x.h"
 
 int main(void) {
-  SetupADC();
   // Enable GPIOA clock
   RCC->APB2ENR |= RCC_APB2ENR_IOPAEN;
 
