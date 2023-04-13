@@ -1,5 +1,6 @@
-.envrc
-.direnv
+.ccls
 .ccls-cache
-.pio
 compile_commands.json
+.direnv
+.envrc
+.pio
