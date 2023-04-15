@@ -4,16 +4,9 @@ This is a minimal template for STM32F103RB development with PlatformIO and Emacs
 
 ** Initialization
 
-To use a template, you can use the nix flake init command and specify the template with the --template flag:
-
+You can ~nix develop~ this repository directly into your project dir
 #+begin_src sh
-nix flake init --template "github:katanallama/stm32-on-nix#stm32-on-nix"
-#+end_src
-
-Alternatively, you can use the nix flake new command to create a new flake project in a new directory:
-
-#+begin_src sh
-nix flake new --template "github:katanallama/stm32-on-nix#stm32-on-nix" my-project
+nix develop github:katanallama/stm32-on-nix
 #+end_src
 
 Ensure that UDEV rules for ~openocd~ are in place and add below to your ~configuration.nix~ or ~flake.nix~
@@ -60,5 +53,6 @@ lsp-restart-workspace
 #+end_src
 
 ** TODO
-- Add support for native builds using CMake
-- Add UART/USART over onboard ST-Link for Nucleo64 dev boards
+- [ ] Add templates, for now ~nix develop~ and ~git clone~
+- [ ] Add support for native builds using CMake
+- [X] Add UART/USART over onboard ST-Link for Nucleo64 dev boards
